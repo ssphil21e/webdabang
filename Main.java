@@ -15,7 +15,8 @@ public class Main
     JComboBox combo;
     Vector vTitle_blog, vTitle_news;
     Vector vLink_blog, vLink_news;
-    String[] menu = { "네이버", "다음" };
+    String[] menu = { "Naver", "Daum" };
+    
     public void run()
     {
         frame = new JFrame("project");
@@ -60,9 +61,9 @@ public class Main
         panel.add(logo);
         
         text_box.setBounds(120, 30, 350, 50);
-        search_button.setBounds(480, 30, 90, 58);
+        search_button.setBounds(480, 30, 82, 58);
         link_button_blog.setBounds(225, 715, 90, 57);
-        link_button_news.setBounds(815, 715, 90, 57);
+        link_button_news.setBounds(815, 715, 80, 57);
         search_list_blog.setBounds(20, 100, 520, 600);
         search_list_news.setBounds(600, 100, 520, 600);
         combo.setBounds(20, 30, 100, 50);
@@ -71,7 +72,7 @@ public class Main
         frame.setBackground(new Color(30, 52, 74));
         frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1140, 800);
+        frame.setSize(1140, 825);
         frame.setResizable(false);
         frame.setVisible(true);
     }
