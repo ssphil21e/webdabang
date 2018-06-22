@@ -12,12 +12,14 @@ public class Main
     JList search_list_news, search_list_blog;
     JButton search_button, link_button_blog, link_button_news;
     JLabel logo;
+    JComboBox combo;
     Vector vTitle_blog, vTitle_news;
     Vector vLink_blog, vLink_news;
-
+    String[] menu = { "네이버", "다음" };
     public void run()
     {
         frame = new JFrame("project");
+
         panel = new JPanel();
       
         link_button_blog = new JButton(new ImageIcon("./img/blog.png"));
@@ -42,6 +44,8 @@ public class Main
         search_list_news = new JList();
         search_list_news.setBackground(new Color(255, 255, 233));
 
+        combo = new JComboBox<String>(menu);
+
         logo = new JLabel(new ImageIcon("./img/logo.png"));
         
         panel.setBackground(new Color(30, 52, 74));
@@ -52,14 +56,16 @@ public class Main
         panel.add(text_box);
         panel.add(search_list_blog);
         panel.add(search_list_news);
+        panel.add(combo);
         panel.add(logo);
         
-        text_box.setBounds(20, 30, 450, 50);
+        text_box.setBounds(120, 30, 350, 50);
         search_button.setBounds(480, 30, 90, 58);
         link_button_blog.setBounds(225, 715, 90, 57);
         link_button_news.setBounds(815, 715, 90, 57);
         search_list_blog.setBounds(20, 100, 520, 600);
         search_list_news.setBounds(600, 100, 520, 600);
+        combo.setBounds(20, 30, 100, 50);
         logo.setBounds(600, 1, 520, 139);
         
         frame.setBackground(new Color(30, 52, 74));
@@ -80,18 +86,33 @@ public class Main
         public void actionPerformed(ActionEvent event)
         {
             String search = text_box.getText();
+            int site = combo.getSelectedIndex();
 
             vLink_blog = new Vector();
             vTitle_blog = new Vector();
-            BlogCrawl bc = new BlogCrawl(search);
-            bc.run(vTitle_blog, vLink_blog);
-            search_list_blog.setListData(vTitle_blog);
-
             vLink_news = new Vector();
             vTitle_news = new Vector();
-            NewsCrawl nc = new NewsCrawl(search);
-            nc.run(vTitle_news, vLink_news);
-            search_list_news.setListData(vTitle_news);
+
+            if (site == 0)
+            {
+                NaverBlogCrawl bc = new NaverBlogCrawl(search);
+                bc.run(vTitle_blog, vLink_blog);
+                search_list_blog.setListData(vTitle_blog);
+
+                NaverNewsCrawl nc = new NaverNewsCrawl(search);
+                nc.run(vTitle_news, vLink_news);
+                search_list_news.setListData(vTitle_news);
+            }
+            else if (site == 1)
+            {
+                DaumBlogCrawl bc = new DaumBlogCrawl(search);
+                bc.run(vTitle_blog, vLink_blog);
+                search_list_blog.setListData(vTitle_blog);
+
+                DaumNewsCrawl nc = new DaumNewsCrawl(search);
+                nc.run(vTitle_news, vLink_news);
+                search_list_news.setListData(vTitle_news);
+            }
         }
     }
 

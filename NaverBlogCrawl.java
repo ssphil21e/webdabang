@@ -4,7 +4,7 @@ import org.jsoup.nodes.*;
 import org.jsoup.select.*;
 import java.util.*;
 
-class BlogCrawl
+class NaverBlogCrawl
 {
     String URL1;
     String URL2;
@@ -12,7 +12,7 @@ class BlogCrawl
     int page = 1;
     int pages = 3;
 
-    public BlogCrawl(String s)
+    public NaverBlogCrawl(String s)
     {
         search = s;
     }
