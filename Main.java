@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.util.*;
 import java.net.*;
 
-public class FirstUi
+public class Main
 {
     JFrame frame;
     JPanel panel;
@@ -20,19 +20,20 @@ public class FirstUi
         frame = new JFrame("project");
         panel = new JPanel();
       
-        link_button_blog = new JButton(new ImageIcon("./blog.png"));
+        link_button_blog = new JButton(new ImageIcon("./img/blog.png"));
         link_button_blog.addActionListener(new ConnectListenerBlog());
         link_button_blog.setBorderPainted(false);
 
-        link_button_news = new JButton(new ImageIcon("./news.png"));
+        link_button_news = new JButton(new ImageIcon("./img/news.png"));
         link_button_news.addActionListener(new ConnectListenerNews());
         link_button_news.setBorderPainted(false);
 
-        search_button = new JButton(new ImageIcon("./search.png"));
+        search_button = new JButton(new ImageIcon("./img/search.png"));
         search_button.addActionListener(new SearchListener());
         search_button.setBorderPainted(false);
 
         text_box = new JTextField(50);
+        text_box.addActionListener(new EnterListener());
         text_box.setBackground(new Color(255, 255, 233));
 
         search_list_blog = new JList();
@@ -41,7 +42,7 @@ public class FirstUi
         search_list_news = new JList();
         search_list_news.setBackground(new Color(255, 255, 233));
 
-        logo = new JLabel(new ImageIcon("./logo.png"));
+        logo = new JLabel(new ImageIcon("./img/logo.png"));
         
         panel.setBackground(new Color(30, 52, 74));
         panel.setLayout(null);
@@ -71,8 +72,7 @@ public class FirstUi
    
     public static void main(String[] args) 
     {
-        FirstUi ui = new FirstUi();
-        ui.run();
+        new Main().run();
     }
 
     class SearchListener implements ActionListener
@@ -126,6 +126,14 @@ public class FirstUi
             {
                 ex.printStackTrace();
             }
+        }
+    }
+
+    class EnterListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent event)
+        {
+            new SearchListener().actionPerformed(event);
         }
     }
 }
